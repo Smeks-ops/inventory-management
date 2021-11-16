@@ -1,6 +1,6 @@
-# Welcome to abihome_test Application!
+# Welcome to Inventory Management System!
 
-Welcome to **Mabihome_test**! This application handles interactions between USERS and POST.
+Welcome to **Inventory Management System!**! This application handles interactions between USERS and POST.
 
 # Technology Stack
 The application uses the following technology tools:
