@@ -1,14 +1,13 @@
 /* eslint-disable no-console */
 require('dotenv').config();
-
 const mongoose = require('mongoose');
+const consola = require('consola');
 
 mongoose.set('useCreateIndex', true);
 
 mongoose.Promise = global.Promise;
 const connectionUrl = process.env.MONGO_DB_URI;
-// const connectionUrl = process.env.MONGO_DB_URI;
-console.log('Connecting to Mongo DB...');
+consola.info('Connecting to Mongo DB...');
 mongoose.connect(connectionUrl,
   {
     useNewUrlParser: true,
@@ -16,9 +15,9 @@ mongoose.connect(connectionUrl,
     useFindAndModify: false,
   })
   .then(() => {
-    console.log('MongoDB connected successfully');
+    consola.success('MongoDB connected successfully');
   }).catch((err) => {
-    console.log('Unable to connect to mongoBD   ', err);
+    consola.error('Unable to connect to mongoBD   ', err);
     process.exit();
   });
 

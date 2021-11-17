@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const asyncHandler = require('express-async-handler');
 const controller = require('../controller/cart');
-const jwtVerify = require('../utilis/utils');
+const jwtVerify = require('../utils/utils');
 
 const cart = express.Router();
 

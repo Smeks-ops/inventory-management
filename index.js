@@ -1,13 +1,15 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-vars */
-require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
+const logger = require('morgan');
+const user = require('./app/routes/user');
+const inventory = require('./app/routes/inventory');
+const cart = require('./app/routes/cart');
+const consola = require('consola');
+require('dotenv').config();
 require('./app/settings/settings');
-const user = require('./app/route/user');
-const inventory = require('./app/route/inventory');
-const cart = require('./app/route/cart')
 
 const app = express();
 
@@ -22,17 +24,20 @@ app.use((req, res, next) => {
 });
 
 app.use(cors());
+app.use(logger('dev'));
 app.use(user);
 app.use(inventory);
 app.use(cart);
 
+//Default route
 app.get('/', (req, res) => {
-  console.log('Welcome to the Inventory Management System');
+  consola.info('Welcome to the Inventory Management System');
   res.send('Welcome to the Inventory Management System');
 });
 
+//App Listen
 app.listen(port, (res) => {
-  console.log(`${appName} is listening on ${port}`);
+  consola.success(`${appName} is listening on ${port}`);
 });
 
 module.exports = app;

@@ -137,7 +137,6 @@ module.exports = {
   async deleteUser(req, res) {
     const { id } = req.params;
 
-    // add an extra parameter to the getOneData() in the user service
     const thirdParam = 'Yes';
 
     const isUserExist = await userService.getOneData(userModel, id, thirdParam);
