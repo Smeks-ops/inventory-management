@@ -2,6 +2,15 @@
 
 Welcome to **Inventory Management System!**! This application handles interactions between USERS and INVENTORIES. The users are able to read the inventories and add to cart which effects the quantity of the inventory in the database. The Admin is able to create, read, update and delete inventories.
 
+## API Doc - [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/16662064-71cdbe60-1d5e-475e-b60f-f326c963bac2?action=collection%2Ffork&collection-url=entityId%3D16662064-71cdbe60-1d5e-475e-b60f-f326c963bac2%26entityType%3Dcollection%26workspaceId%3D24efdb0c-14e4-43fd-8122-b6099a2323e5)
+
+## Getting the App Locally
+
+Clone this repository with this command
+```bash
+git clone https://github.com/Smeks-ops/inventory-management.git
+```
+
 # Technology Stack
 
 The application uses the following technology tools:

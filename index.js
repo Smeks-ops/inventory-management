@@ -32,7 +32,7 @@ app.use(cart);
 //Default route
 app.get('/', (req, res) => {
   consola.info('Welcome to the Inventory Management System');
-  res.send('Welcome to the Inventory Management System');
+  res.sendFile(__dirname + "/postmanDoc.html");
 });
 
 //App Listen
