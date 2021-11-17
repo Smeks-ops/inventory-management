@@ -49,4 +49,4 @@ The application handles the following requests:
 
 # Deployment
 
-Heroku
+Heroku: [![https://inventory-managementsystem.herokuapp.com/]]
