@@ -8,7 +8,6 @@ module.exports = {
       const result = await cartModel.create(data);
       return result;
     } catch (e) {
-      console.log('an error occurred while adding to cart', e);
       return null;
     }
   }

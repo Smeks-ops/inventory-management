@@ -32,7 +32,6 @@ module.exports = {
       const token = await generateToken(result);
       return { result, token };
     } catch (e) {
-      console.log('an error occurred');
       if (e.name === 'MongoError' && e.code === 11000) {
         return false;
       }
@@ -55,7 +54,6 @@ module.exports = {
 
   async validateUser(param, yet) {
     if (param === null) {
-      console.log('Data gotten');
       return null;
     }
     // Load hash from your password DB.
@@ -75,10 +73,8 @@ module.exports = {
       param.password = await this.hashPassword(param.password);
     }
     try {
-      console.log('daaa', param);
       return await userModel.findByIdAndUpdate(data, param, { new: true });
     } catch (e) {
-      console.log('an error occurred', e);
       if (e.name === 'MongoError' && e.code === 11000) {
         return false;
       }

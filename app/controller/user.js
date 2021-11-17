@@ -16,7 +16,6 @@ module.exports = {
       result = await userService.createAUser(req.body);
 
       if (result === false) {
-        console.log('This email already exists, kindly sign in');
         messageBody = 'This email already exists, kindly sign in';
         return res.status(409).send({
           error: true,
@@ -39,7 +38,6 @@ module.exports = {
         token: result.token,
       });
     } catch (error) {
-      console.log('error', error.details[0]);
       return res.status(400).send({
         message: `${error.details[0].message.replace(/['"]+/g, '')}.`,
         status: 'error',
@@ -64,15 +62,12 @@ module.exports = {
       if (isUserExist === null) {
         error = true;
         code = 404;
-        console.log('User does not exist, kindly sign up');
         messageBody = 'User does not exist, kindly sign up';
       } else if (isUserExist === false) {
-        console.log('Incorrect password');
         error = true;
         code = 400;
         messageBody = 'Incorrect password';
       } else {
-        console.log('Sign in was successful');
         messageBody = 'Sign in was successful';
         return res.status(200).send({
           error: false,
@@ -89,7 +84,6 @@ module.exports = {
         message: messageBody,
       });
     } catch (error) {
-      console.log('error', error.details[0]);
       return res.status(400).send({
         message: `${error.details[0].message.replace(/['"]+/g, '')}.`,
         status: 'error',
@@ -100,13 +94,9 @@ module.exports = {
 
   async updateUser(req, res) {
     const { id } = req.params;
-    console.log('id', id);
-
     const result = await userService.updateUser(req.body, id);
-    console.log('result from user update', result);
 
     if (result === null) {
-      console.log('user not found');
       return res.status(404).send({
         error: true,
         code: 400,
@@ -125,7 +115,6 @@ module.exports = {
     const { id } = req.params;
 
     const userData = await userService.getUser(id);
-    console.log('user successfully fetched');
     return res.status(200).send({
       error: false,
       code: 200,
@@ -140,11 +129,9 @@ module.exports = {
     const thirdParam = 'Yes';
 
     const isUserExist = await userService.getOneData(userModel, id, thirdParam);
-    console.log('isUserExist', isUserExist);
 
     if (isUserExist) {
       const userData = await userService.deleteUser(id);
-      console.log('User successfully deleted');
       return res.status(200).send({
         error: false,
         code: 200,
@@ -152,7 +139,6 @@ module.exports = {
         data: userData,
       });
     }
-    console.log('user not found');
     return res.status(404).send({
       error: true,
       code: 404,

@@ -14,7 +14,6 @@ module.exports = (req, res, next) => {
   }
   jwt.verify(token, process.env.SECRET_KEY, (error, decoded) => {
     if (error) {
-      console.log('Failed to verify token. Invalid token provided');
       return res.status(401).send({
         auth: false,
         code: 401,
@@ -23,13 +22,11 @@ module.exports = (req, res, next) => {
     }
     userModel.findOne(decoded.id, async (err, client) => {
       if (err) {
-        console.log('There was a problem finding the user.');
         return res.status(500).send({
           code: 500,
           message: 'There was a problem finding the user.',
         });
       } if (!client) {
-        console.log('No user found.');
         return res.status(404).send({
           code: 404,
           message: 'No user found.',

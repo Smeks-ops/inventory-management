@@ -19,7 +19,6 @@ module.exports = {
       req.body.price = `₦${req.body.price}`
       result = await inventoryService.saveInventory(req.body);
       if (result.result === null) {
-        console.log('Internal server error');
         messageBody = 'Internal server error';
         return res.status(500).send({
           error: true,
@@ -34,19 +33,15 @@ module.exports = {
         data: result,
       });
     } catch (error) {
-      console.log('error', error.details[0]);
       return res.status(400).send({
-        message: `${error.details[0].message.replace(/['"]+/g, '')}.`,
-        status: 'error',
-        data: null,
+        message: 'An error occurred',
+        error: true,
       });
     }
   },
 
   async getInventories(req, res) {
-    console.log('req.decoded', req.decoded)
     const inventoryData = await inventoryService.getInventories();
-    console.log('user successfully fetched');
     return res.status(200).send({
       error: false,
       code: 200,

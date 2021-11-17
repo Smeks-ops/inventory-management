@@ -9,7 +9,6 @@ module.exports = {
       const result = await inventoryModel.create(data);
       return result;
     } catch (e) {
-      console.log('an error occurred while saving inventory', e);
       return null;
     }
   },
@@ -17,7 +16,6 @@ module.exports = {
   async getInventories() {
     try {
       const inventoryData = await inventoryModel.find({ isDeleted: false });
-      console.log('inventoryData', inventoryData);
       return inventoryData;
     } catch (e) {
       console.log('an error occurred while getting an inventory', e);

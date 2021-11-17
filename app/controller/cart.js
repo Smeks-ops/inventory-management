@@ -4,13 +4,13 @@ const cartService = require('../service/cart');
 const inventoryService = require('../service/inventory.js');
 
 module.exports = {
+  //Deduct from the total inventory amount and add to cart
   async addToCart(req, res) {
     let messageBody;
     let result;
     try {
       const userObject = req.decoded
       const inventoryData = await inventoryService.getInventoryById(req.body.inventory)
-      console.log('inventoryData', inventoryData)
       if (inventoryData.quantity < req.body.quantity) {
         return res.status(400).send({
           error: true,
@@ -24,25 +24,23 @@ module.exports = {
         await inventoryService.updateInventory(inventoryData._id, {
           quantity: quantityRemaining
         })
-      if (result.result === null) {
-        console.log('Internal server error');
-        messageBody = 'Internal server error';
-        return res.status(500).send({
-          error: true,
-          code: 500,
-          message: messageBody,
+        if (result.result === null) {
+          messageBody = 'Internal server error';
+          return res.status(500).send({
+            error: true,
+            code: 500,
+            message: messageBody,
+          });
+        }
+        return res.status(201).send({
+          error: false,
+          code: 201,
+          message: 'Successfully saved inventory',
+          data: result,
         });
-      }
-      return res.status(201).send({
-        error: false,
-        code: 201,
-        message: 'Successfully saved inventory',
-        data: result,
-      });
       }
 
     } catch (error) {
-      console.log('error', error);
       return res.status(400).send({
         status: 'error',
         data: null,
